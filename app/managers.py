@@ -46,11 +46,11 @@ class ActorManager:
         query += "SET first_name = ?, last_name = ? "
         query += "WHERE id = ?"
 
-        self.cursor.execute(query, (new_first_name, new_last_name, str(pk)))
+        self.cursor.execute(query, (new_first_name, new_last_name, pk))
         self.connector.commit()
 
     def delete(self, pk: int) -> None:
         query = f"DELETE FROM {self.table_name} "
         query += "WHERE id = ?"
-        self.cursor.execute(query, str(pk))
+        self.cursor.execute(query, (pk,))
         self.connector.commit()
